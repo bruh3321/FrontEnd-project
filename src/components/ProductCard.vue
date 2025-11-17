@@ -16,7 +16,7 @@
             <p class="card-text fw-bold text-success mb-0">{{ product.price }} MAD</p>
           </div>
           <RouterLink :to="'/product/' + product.id">
-            <button class="btn btn-primary btn-sm" @click="addToCart">Voir</button>
+            <button class="btn btn-primary btn-sm">Voir</button>
           </RouterLink>
         </div>
       </div>
@@ -25,11 +25,14 @@
 </template>
 
 <script setup>
+import { setCartProduct } from '@/services/cart';
 
 const props = defineProps({
   product: {
     type: Object,
     required: true,
   },
-})
+}
+)
+
 </script>
