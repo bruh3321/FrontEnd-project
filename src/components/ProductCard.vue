@@ -25,8 +25,6 @@
 </template>
 
 <script setup>
-import { setCartProduct } from '@/services/cart';
-
 const props = defineProps({
   product: {
     type: Object,
