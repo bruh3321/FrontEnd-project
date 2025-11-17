@@ -40,7 +40,7 @@ onMounted(async () => {
 async function Rechercher(){
   try {
     let data  = await getAllProducts()
-    let resp = data.data   // your full list of products
+    let resp = data.data
 
     // If no category selected, show all products
     if (!selectedCategory.value) {
