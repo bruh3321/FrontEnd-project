@@ -6,7 +6,17 @@
         @quantity-changed="updateTotalPrice"
         @product-removed="updateTotalPrice"/>
     </div>
-    <p id="total">{{ totalprice}}</p>
+  </div>
+  <div class="d-flex flex-column flex-md-row align-items-center justify-content-between w-100 m-2 p-3 bg-light rounded shadow-sm">
+    <div class="d-flex align-items-center mb-2 mb-md-0">
+      <strong class="me-2">Total :</strong>
+      <span class="fs-5 fw-bold badge text-black" aria-live="polite">{{ totalprice.toFixed(2) }} €</span>
+    </div>
+
+    <div class="d-flex">
+      <button class="btn btn-outline-secondary me-2" type="button" @click="updateTotalPrice">Mettre à jour</button>
+      <button class="btn btn-success" type="button">Checkout</button>
+    </div>
   </div>
 </template>
 
