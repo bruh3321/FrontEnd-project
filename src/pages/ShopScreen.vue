@@ -5,7 +5,7 @@
       <h2>Tous les produits</h2>
       <div class="d-flex">
         <select name="category" id="category" class="form-select w-auto" v-model="selectedCategory">
-          <option value="" selected>Choisir une catégorie</option>
+          <option value="" selected>Tous les Produits</option>
           <option v-for="c in categories" :key="c" :value="c">
             {{ c }}
           </option>

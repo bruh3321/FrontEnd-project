@@ -18,7 +18,13 @@
           <button class="btn btn-outline-secondary" @click="increaseQty">+</button>
         </div>
 
-        <button class="btn btn-success" @click="achterproduct" >Ajouter au panier</button>
+        <button class="btn btn-success" @click="achterproduct">Ajouter au panier</button>
+
+        <!-- Replace <b-alert> with a standard Bootstrap alert -->
+        <div v-if="showDismissibleAlert" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+          Produit ajouté au panier
+          <button type="button" class="btn-close" aria-label="Close" @click="showDismissibleAlert = false"></button>
+        </div>
       </div>
     </div>
   </div>
@@ -28,7 +34,8 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { getProduct } from '@/services/api';
-import { setCartProduct } from '@/services/cart'
+import { setCartProduct } from '@/services/cart';
+
 const route = useRoute();
 const product = ref({
   title: '',
@@ -37,13 +44,13 @@ const product = ref({
   image: ''
 });
 const quantity = ref(1);
+const showDismissibleAlert = ref(false);
 
 onMounted(async () => {
   const productId = route.params.id;
   const resp = await getProduct(productId);
-
-  product.value=resp.data
-  console.log(product)
+  product.value = resp.data;
+  console.log(product);
 });
 
 function increaseQty() {
@@ -53,10 +60,13 @@ function decreaseQty() {
   if (quantity.value > 1) quantity.value--;
 }
 
-function achterproduct(){
-  setCartProduct(product.value,quantity.value)
+function achterproduct() {
+  setCartProduct(product.value, quantity.value);
+  showDismissibleAlert.value = true;
+  setTimeout(() => {
+    showDismissibleAlert.value = false;
+  }, 3000);
 }
-
 </script>
 
 <style>
